@@ -1,0 +1,16 @@
+    {%- comment %} include.list will either be page or post depending
+        on whether post.html or blogList.html is calling {%- endcomment -%}
+    <div class="catag"> 
+      {% for category in include.list.categories -%}
+      {%- unless category=="blog" -%}
+      <a class="categories" href="{{ site.blogPath }}categories/{{ category | slugify }}"
+	 title="List of posts in the '{{ category }}' category"
+	 property="articleSection" content="{{ category }}">{{ category }}</a>
+      {% endunless -%}
+      {% endfor -%}
+      {% for tag in include.list.tags -%}
+      <a class="tags" href="{{ site.blogPath }}tags/{{ tag | slugify }}"
+	 title="List of posts with the '{{ tag }}' tag"
+	 property="keywords" content="{{ tag }}">{{ tag }}</a>
+      {% endfor -%}
+    </div>

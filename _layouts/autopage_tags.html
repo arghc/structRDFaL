@@ -1,0 +1,12 @@
+---
+title: Posts listed by Tags
+layout: default
+mntype: Blog
+pagination:
+  enabled: true
+---
+  <h1 property="title">AutoPage for Tag <b>{% if page.autopages %}{{page.autopages.display_name}}{% endif %}</b> Page {{page.pagination_info.curr_page}} of {{page.pagination_info.total_pages}}</h1>
+  <p>This page is automagically created and paginated for each tag available in the posts on this site</p>
+  {{ content | markdownify }}
+
+{%- include blogList.html -%}

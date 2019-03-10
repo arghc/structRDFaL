@@ -1,0 +1,145 @@
+---
+layout: default
+---
+{% comment -%}
+<!-- some debug stuff -->
+<!--       event: spt:{{site.pgtype}}, lpt:{{layout.pgtype}}<br />
+      smt:{{site.mntype}}, lmt:{{layout.mntype}}<br />
+      evtype: let:{{layout.evtype}}, pet:{{page.evtype}}<br />  -->
+{%- endcomment -%}
+  {%- if page.image %}<meta property="image" href="{{ page.image }}" /></a>{%- endif %}
+
+  <section property="mainEntity" typeof="{{ layout.evtype | default: page.evtype | default: 'Event' }}">
+    {%- if page.image %}
+    <a property="image" href="{{ page.image }}" title="bigger"><img src="{{ page.image }}" align="right" alt="" title="Poster for {{ page.title }}" style="max-width: 33%;" /></a>
+    {%- endif %}
+    {%- if page.description %}
+      {%- if page.age %}
+        {% capture ageStmt %}  Recommended for <span property="typicalAgeRange">{{ page.age }}</span>.{% endcapture %}
+      {%- endif %}
+      <p property="description">{{ page.description | newline_to_br }}{{ ageStmt }}</p>
+    {%- endif %}  
+
+
+      <!-- only if needed
+    <meta property="eventStatus" content="http://schema.org/EventRescheduled">
+    <meta property="eventStatus" content="http://schema.org/EventCancelled">
+    <meta property="eventStatus" content="http://schema.org/EventPostponed">
+    <span property="previousStartDate" content="2013-09-14T21:30">(previously scheduled for Sept 14th)</span>
+    -->
+
+      
+    
+    <dl>
+      {%- if page.website %}
+      <dt>Website</dt>
+      <dd><a property="url" href="{{ page.website }}" title="{{ page.title}}">{{ page.website }}</a></dd>
+      {%- endif %}
+      <dt>Host</dt>
+      {%- if page.orgURL %}
+      <dd property="organizer" typeof="Organization"><a property="url" title="{{ page.organizer }}" href="{{ page.orgURL }}"><span property="name">{{ page.organizer }}</span></a></dd>
+      {%- else %}
+      <dd property="organizer" typeof="Organization"><span property="name">{{ page.organizer }}</span></dd>
+      {%- endif %}
+      {%- if page.sponsor %}
+      <dt>Sponsor(s)</dt>
+      <dd>
+	<ul style="padding: 0; list-style: none;"
+        {%- assign sponsors = page.sponsor | split: ", " %}
+        {%- for spons in sponsors %}
+	    <li property="sponsor" typeof="Organization"> <span property="name">{{ spons }}</span></li>
+        {%- endfor %}
+        </ul>
+      </dd>
+      {%- endif %}
+      
+      <!-- if doing dates with times, need the date/time to be in ISO_8601 format
+      <dd property="startDate" content="2019-01-26T08:10:36-08:00">January 26, 2019 at 8:10am PST</dd>
+	-->
+      {%- if page.endDate -%}
+      <dt>Dates</dt>
+      {%- capture endday %} to <span property="endDate" content="{{ page.endDate }}">{{ page.endDate | date: "%b %d, %Y" }}</span>{%- endcapture -%}
+      {%- else %}
+      <dt>Date</dt>
+      {%- endif %}
+      <dd><span property="startDate" content="{{ page.startDate }}">{{ page.startDate | date: "%b %d, %Y" }}</span>{{ endday }}</dd>
+      <dt>Where</dt>
+      <dd property="location" typeof="Place">
+	{%- if page.venue -%}
+	  {%- if page.venueURL %}
+	<span property="name" content="{{ page.venue }}"><a property="url" href="{{ page.venueURL }}">{{ page.venue }}</a></span>
+	  {%- else %}
+	<span property="name">{{ page.venue }}</span>
+	  {%- endif -%}
+	{%- endif %}
+	<div property="address" typeof="PostalAddress">
+	  <span property="streetAddress">{{ page.stAddress | newline_to_br }}</span><br>
+	  <span property="addressLocality">{{ page.locality }}</span>, 
+	  <span property="addressRegion">{{ page.region }}</span>, 
+	  {%- if page.postal %}
+	  <span property="postalCode">{{ page.postal }}</span>, 
+	  {%- endif %}
+	  <span property="addressCountry">{{ page.country }}</span>
+	</div>
+	{%- if page.mappic or page.maplink %}
+        <span property="hasMap">
+	  {%- if page.mappic %}
+	  <link itemprop="mapType" href="http://schema.org/VenueMap" />
+          <a property="map" href="{{ page.mappic }}">Map</a><br>
+	  {%- endif %}
+	  {%- if page.maplink %}
+	  <a property="url" href="{{ page.maplink }}">click here for directions</a>
+	  {%- endif %}
+        </span>
+	{%- endif %}
+      </dd>
+      {%- if page.langs %}
+      <dt>Language(s)</dt>
+      <dd property="inLanguage">
+        {%- assign languages = page.langs | split: ", " %}
+        {%- for lang in languages %}
+	  {%- unless forloop.first == true %}, {% endunless -%}
+        <span property="name">{{ lang }}</span>
+        {%- endfor -%}
+      </dd>
+      {%- endif %}
+      {%- if page.offers %}
+      <dt>Price</dt>
+      <dd property="offers" typeof="http://schema.org/Offer">
+        <span property="price" content="{{ page.price }}">
+	  {%- if page.currency %}
+          <span property="priceCurrency" content="{{ page.currencyCode }}">{{ page.currency }}</span>
+	  {%- endif %}
+	  {%- if page.price %}
+	  {{ page.price }}
+	  {%- else %}
+	  {{ page.offers }}
+	  {%- endif %}
+	</span>
+      </dd>
+      {%- endif %}
+      <!-- 
+      <dd><ul>
+	  <li property="offers" typeof="http://schema.org/Offer">	    
+	    <a property="url" href="example.com/registration.html" title="registration form">Register here</a>
+	    <span property="validFrom" content="2015-10-01T00:01">Oct 1, 2015</span> –
+            <span property="validThrough" content="2016-01-31T23:59">Jan 31, 2016</span> –
+	    <div class="event-price">
+	      <meta property="priceCurrency" content="USD" />$
+	      <meta property="price" content="13.00" />13.00
+	    </div>
+	  </li>
+	  <li property="offers" typeof="http://schema.org/Offer">
+	    <a property="url" href="example.com/registration.html" title="registration form">Register here</a>
+            <span property="validFrom" content="2016-02-01T00:01">Feb 1, 2016</span> –
+            <span property="validThrough" content="2016-06-14T23:59">June 14, 2016</span> –
+	    <span property="priceCurrency" content="USD">$</span><span property="price" content="1000.00">1,000.00</span>
+	  </li>
+      </ul></dd>  -->
+    </dl>
+<!--     <p property="description">  
+      yatta yatta event
+    </p> -->
+  </section>
+</main>
+</section>

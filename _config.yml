@@ -1,0 +1,138 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+######################################################################
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+######################################################################
+# Setup
+title:            'My website title'
+email: 		  your-email@example.com
+author:		  My Name
+tagline:          'A pithy description of my website'
+description: >- # this means to ignore newlines until "baseurl:"
+  Write an awesome description for your new site here. You can edit this
+  line in _config.yml. It will appear in your document head meta (for
+  Google search results) and in your feed.xml site description.
+
+## possibly a shortened (acronym?) version of your website title to prefix individual page titles
+# sitemark:	  'MWT'
+
+## for the WebPage Schema: One of the domain specialities to which this web page's content applies.
+#specialty:	  ''
+
+baseurl: "/" # the subpath of your site, e.g. /blog
+#url: "" # the base hostname & protocol for your site, e.g. http://example.com
+scPath: "/scripts/"  # the path to your (java)scripts
+stPath: "/styles/"   # the path to your CSS
+
+## your google_analytics code
+#google_analytics: "UA-"
+
+######################################################################
+# Global config
+######################################################################
+# I hate the default _site sub-directory as destination for my
+# processed site, so I like to set a different destination
+#---------------------------------------------------------------------
+# destination: /home/me/sitedev/www.mysite.com
+
+#---------------------------------------------------------------------
+# Although I am using the HTML5 Boilerplate, I don't agree with the
+# idea that javascript should be on by default, so turn it on if you
+# want it.
+#---------------------------------------------------------------------
+# javascriptON: true
+
+#---------------------------------------------------------------------
+# SASS/CSS
+#---------------------------------------------------------------------
+#sass_dir: _sass  # this is the default
+style: compressed
+
+######################################################################
+# Build settings
+######################################################################
+markdown: kramdown
+#theme: structRDFaL
+
+######################################################################
+# Plugins
+######################################################################
+plugins:
+  - jekyll-feed
+  - jekyll-paginate-v2
+
+######################################################################
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+# exclude:
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
+######################################################################
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - _layouts/
+  - _includes/
+  - LICENSE.md
+  - LICENSE.txt
+  - Readme.md
+  - .editorconfig
+  - .colophon/
+  
+######################################################################
+# Blog settings
+######################################################################
+blogPath: "/blog/"  # the path to your blog
+defaults:
+  -
+    scope:
+      path: "blog" 
+      type: "posts"
+    values:
+      permalink: "/:categories/:title:output_ext"
+
+######################################################################
+# Paginate v1
+######################################################################
+#paginate:         5
+#paginate_path: "/blog/page:num"
+#excerpt_separator: <!--more-->
+
+######################################################################
+# Paginate v2
+######################################################################
+pagination:
+  enabled: true
+  per_page: 5
+  permalink: '/page:num.html'
+  title: ':title - page :num of :max'
+  limit: 0
+  trail:
+    before: 2
+    after: 2
+  sort_reverse: true # newer to older
+autopages:
+   enabled: true
+   categories:
+     permalink: '/blog/categories/:cat'
+   tags:
+     permalink: '/blog/tags/:tag'
+   collections:
+     enabled: false
+   debug: true

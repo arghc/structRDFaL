@@ -1,0 +1,20 @@
+---
+title: Posts listed by Category
+layout: default
+---
+<!-- Jekyll makes the categories available to us at site.categories. Iterating over site.categories on a page gives us another array with two items, the first item is the name of the category and the second item is an array of posts in that category. -->
+
+{% assign sortedCats = site.categories | sort %}
+{% for category in sortedCats %}
+  {% assign cat = category[0] %}
+  {% unless cat == "blog" %}
+    <section id="{{ cat }}">
+      <h2>{{ cat }}</h2>
+      <ul>
+	{% for post in category[1] %}
+          <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+	{% endfor %}
+      </ul>
+    </section>
+  {% endunless %}
+{% endfor %}

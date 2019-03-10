@@ -1,0 +1,24 @@
+type=Festival
+title=Flaming Dudes
+descNote=|- use for multi-line descriptions, don't forget to indent
+description=Off-brand Burning Man like festival, only we didn't say that.  Not infringing on anyone's IP.  Not at all.
+age=Adults Only
+website=http://flaming-dudes-example.com/
+organizer=Flaming People
+orgURL=http://flaming-people-example.com/
+startDate=2016-06-15
+endDate=
+venue=if they've included a venue name in the address
+addrNote=|- use for multi-line addresses, don't forget to indent
+stAddress=Thingummy field
+locality=Perth
+region=WA
+postal=
+country=Australia
+venueURL=http://thingummy-field-example.com/
+mappic=
+maplink=https://www.google.ca/maps/place/Perth WA, Australia/@-32.0397559,115.6813467,10z/data=!3m1!4b1!4m5!3m4!1s0x2a32966cdb47733d:0x304f0b535df55d0!8m2!3d-31.9505269!4d115.8604572
+langs=Esperanto, Unicode
+offers=
+currencyCode=JPY or whatever
+currency=Â¥ or the like

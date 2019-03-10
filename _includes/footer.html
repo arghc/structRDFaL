@@ -1,0 +1,18 @@
+    <footer>
+      <address property="author" typeof="Person">Contact <a href="mailto:{{ site.email }}" property="name" content="{{ site.author }}">{{ site.author }}</a></address>
+      <p {% unless page.description %}property="description"{% endunless %}>{{ site.description }}</p>
+      {% if javascriptON -%}
+      <script src="{{ scPath }}vendor/modernizr-3.6.0.min.js"></script>
+      <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+      <script>window.jQuery || document.write('<script src="{{ scPath }}vendor/jquery-3.3.1.min.js"><\/script>')</script>
+      <script src="{{ scPath }}plugins.js"></script>
+      <script src="{{ scPath }}main.js"></script>
+      {%- endif -%}
+      {% if site.google_analytics -%}
+      <script>
+	window.ga = function () { ga.q.push(arguments) }; ga.q = []; ga.l = +new Date;
+	ga('create', '{{ site.google_analytics }}, 'auto'); ga('send', 'pageview')
+      </script>
+      <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+      {%- endif -%}
+    </footer>

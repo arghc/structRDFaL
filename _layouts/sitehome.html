@@ -1,0 +1,62 @@
+<!doctype html>
+<html class="no-js" lang="en" prefix="dc: http://purl.org/dc/terms/">
+  <head profile="http://www.w3.org/2005/10/profile">
+    <meta charset="utf-8">
+    {% if site.title -%}
+      {%- capture preTitle %}{{ site.title }} - {% endcapture -%}
+    {% endif -%}
+
+    <title property="dc:title">{{ preTitle }}{{ page.title }}</title>
+    <meta name="description" property="dc:description" content="{{ page.description | default: site.description }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    {% if site.author -%}
+    <meta name="author" property="dc:creator" content="{{ site.author }}" />
+    {%- endif %}
+    {% if page.meta-subject -%}
+    <meta property="dc:subject" content="{{ page.meta-subject }}" />
+    {%- endif %}
+    <meta property="dc:format" content="text/html" />
+    <meta property="dc:identifier" content="{{ page.url | absolute_url }}" />
+    {% if page.creation-date -%}
+    <meta property="dc:date.created" content="{{ page.creation-date | date: '%Y-%m-%d' }}" />
+    {%- endif %}
+    <meta property="dc:date.lastmodified" content="{{ page.date | date: '%Y-%m-%d' }}" />
+    {% if site.copynotice -%}
+    <meta property="dc:rights" content="{{ site.copynotice }}" />
+    {%- endif %}    
+
+    <link rel="manifest" href="site.webmanifest">
+    <link rel="apple-touch-icon" href="icon.png">
+    {%- comment -%}
+    HTML5BP says:
+    <!-- Place favicon.ico in the root directory -->
+    but the W3C "discourage" this behaviour, so...
+    {%- endcomment %}
+    <link rel="icon" href="{{ site.baseurl }}favicon.ico">
+
+    <link rel="stylesheet" href="{{ site.stPath }}normalize.css">
+    <link rel="stylesheet" href="{{ site.stPath }}HTML5BP-main.css">
+    <link rel="stylesheet" href="{{ site.stPath }}structRDFaL.css">
+    {% if page.isform -%}<link rel="stylesheet" href="{{ site.stPath }}form.css">{%- endif %}
+
+    <meta name="theme-color" content="#fafafa">
+  </head>
+
+  <body vocab="http://schema.org/" typeof="{{ page.pgtype | default: 'WebPage' }}">
+  <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+  {%- if page.mntype -%}
+    <main tabindex="-1" id="main-thing" property="mainEntity" typeof="{{ page.mntype }}">
+  {%- else -%}
+    <main tabindex="-1" id="main-thing">
+      <h1 property="name">{{ page.title }}</h1>
+  {%- endif %}
+      <img id="top-corner-logo" src="/icon.png" alt="logo" title="Home">
+      {{ content }}
+    </main>
+    {% include nav.html -%}
+    {% include footer.html -%}
+  </body>
+</html>

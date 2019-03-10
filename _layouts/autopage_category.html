@@ -1,0 +1,11 @@
+---
+title: Posts listed by Category
+layout: default
+mntype: Blog
+pagination:
+  enabled: true
+---
+<h1 property="name">AutoPage Category <b>{% if page.autopages %}{{page.autopage.display_name}}{% endif %}</b> Page {{page.pagination_info.curr_page}} of {{page.pagination_info.total_pages}}</h1>
+  {{ content | markdownify }}
+
+{%- include blogList.html -%}

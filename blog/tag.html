@@ -1,0 +1,16 @@
+---
+title: Posts listed by Tag
+layout: default
+---
+{% assign sortedTags = site.tags | sort %}
+{% for tag in sortedTags %}
+  {% assign t = tag[0] %}
+  <section id="{{ t }}">
+    <h2>{{ t }}</h2>
+    <ul>
+      {% for post in tag[1] %}
+        <li><a href="{{ post.url }}">{{ post.title }}</a></li>
+      {% endfor %}
+    </ul>
+  </section>
+{% endfor %}

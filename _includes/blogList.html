@@ -1,0 +1,82 @@
+{%- if layout.blog-list-title or page.blog-list-title -%}
+  {%- assign blTitle = layout.blog-list-title | default: page.blog-list-title -%}
+{%- endif -%}
+<section class="blog-list">
+  {% if blTitle %}<h2>{{ blTitle }}</h2>{% endif -%}
+  <!-- This loops through the paginated posts -->
+  {% for post in paginator.posts -%}
+  <article typeof="BlogPosting">
+    <header><h3><a class="post-link" property="url"
+		   href="{{ post.url | relative_url }}"><span
+		   property="headline">{{ post.title | escape }}</span></a></h3>
+      <time property="datePublished"
+	    content="{{ post.date | date_to_xmlschema }}"
+	    class="post-date">{{ post.date | date: "%b %-d, %Y"}}</time>
+      <!-- Google requires that publisher be an Organization vs Person 
+	   (as the schema.org definition says it can be).  Just saying 
+	   that the Publisher is an Organization is insufficient because
+	   Organizations *require* a logo.  This is a very stupid can of
+	   worms that I am ignoring.  Feel free to fix it for yourself, 
+	   though.  That starts with the line below.
+
+	   See https://webmasters.stackexchange.com/questions/110332/personal-blog-using-structured-data-fails-validation-on-publisher/110350#110350
+
+	   Also, I have made that line invisible because I'm using the 
+	   site author information, and that info is visible in the footer,
+	   so I'm not marking up lots of invisible things that Google frowns
+	   on.  If you've got a multi-author blog, then of course, you should
+	   visibly list the authors. -->
+      <a property="author publisher" typeof="Person"><meta property="name" content="{{ site.author }}" /></a>
+      {% include catag.html list=post -%}
+    </header>
+    <span property="description">{{ post.excerpt }}</span>
+  </article>
+  {%- endfor -%}
+</section>
+
+<!-- 
+    Showing buttons to move to the next and to the previous list of posts (pager buttons).
+-->
+{% if paginator.total_pages > 1 -%}
+<nav class="blog-pager">
+  <ul>
+
+    {% if paginator.previous_page -%}
+      {% if paginator.first_page -%}
+    <li class="previous">
+      <a href="{{ paginator.first_page_path | prepend: site.baseurl | replace: '//', '/' }}">First</a>
+    </li>
+      {%- endif %}
+    <li class="previous">
+      <a href="{{ paginator.previous_page_path | prepend: site.baseurl | replace: '//', '/' }}">&larr; Newer Posts</a>
+    </li>
+    {%- endif %}
+
+    {% if paginator.page_trail -%}
+    {% for trail in paginator.page_trail -%}
+    {%- if page.url == trail.path %}
+    <li class="selected">
+      <a rel="self" title="{{trail.title}}">{{ trail.num }}</a>
+    {%- else %}
+    <li>
+      <a href="{{ trail.path | prepend: site.baseurl | replace: '//', '/' }}" title="{{trail.title}}">{{ trail.num }}</a>
+    {%- endif %}
+    </li>
+    {%- endfor -%}
+    {%- endif %}
+
+    {% if paginator.next_page -%}
+    <li class="next">
+      <a href="{{ paginator.next_page_path | prepend: site.baseurl | replace: '//', '/' }}">Older Posts &rarr;</a>
+    </li>
+      {% if paginator.last_page -%}
+    <li class="previous">
+      <a href="{{ paginator.last_page_path | prepend: site.baseurl | replace: '//', '/' }}">Last</a>
+    </li>
+      {%- endif %}
+    {%- endif %}
+
+  </ul>
+  {%- endif %}
+</nav>
+<p class="rss-subscribe">subscribe <a href="{{ "/feed.xml" | relative_url }}">via RSS</a></p>

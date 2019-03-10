@@ -1,0 +1,34 @@
+---
+layout: default
+mntype: BlogPosting
+---
+{% comment -%}
+<!-- some debug stuff -->
+<!-- <p>post: spt:{{site.pgtype}}, lpt:{{layout.pgtype}}<br />
+     smt:{{site.mntype}}, lmt:{{layout.mntype}}</p>  -->
+{%- endcomment -%}
+<article class="post">
+  <header>
+    <h1 property="headline">{{ page.title }}</h1>
+    <time property="datePublished"
+	  content="{{ page.date | date_to_xmlschema }}"
+	  class="post-date">{{ page.date | date_to_string }}</time>
+    <a property="author publisher" typeof="Person"><meta property="name"
+	  content="{{ site.author }}" /></a>
+    {% include catag.html list=page -%}
+  </header>
+  <section property="articleBody">
+    {{ content }}
+  </section>
+</article>
+<section class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    {%- for post in site.related_posts limit:3 -%}
+      <li>
+	<small>{{ post.date | date_to_string }}</small>
+        <a href="{{ post.url | relative_url }}">{{ post.title }}</a>
+      </li>
+    {% endfor -%}
+  </ul>
+</section>

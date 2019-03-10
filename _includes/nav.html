@@ -1,0 +1,14 @@
+{%- assign menuURLs = "/blog/|/about.html|/contact.html" | split: "|" -%}
+{%- assign menuAnchors = "Blog|About|Contact" | split: "|" -%}
+{%- assign menuTitles = "My blog about stuff.|About this here website.|Contact us." | split: "|" -%}
+<nav id="site-nav">
+  {% for link in menuURLs -%}
+  {% capture idx %}{{ link | append: "index.html" }}{% endcapture -%}
+  <a
+    {%- if page.url==link %} class="nav-self"
+    {%- elsif page.url contains link and page.url == idx %} class="nav-self"
+    {%- else %} 
+      {%- if page.url contains link and page.url != link %} class="nav-sub"{% endif %} href="{{ link }}"
+    {%- endif %} title="{{ menuTitles[forloop.index0] }}">{{ menuAnchors[forloop.index0] }}</a>
+  {% endfor -%}
+</nav>

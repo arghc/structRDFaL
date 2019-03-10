@@ -1,0 +1,177 @@
+html {
+    color: #000;		/* HTML5BP sets it to #222 why?? */
+}
+/* -----------------------------------------------------------------
+   optimal line length for reading is 50-75 characters, add some 
+   left margin for menu and logo, this should probably be updated
+   for responsiveness based on viewport and whatnot
+   ----------------------------------------------------------------- */
+body { 
+    margin-left: 11em; 
+    max-width: 51em;
+}
+body > footer {
+    padding: 0 2px 0 4px;
+    background: #eee;
+}
+
+/* -----------------------------------------------------------------
+   To make footers go to the bottom of the *window* and stay there
+   regardless of page content length.
+
+   Finally, an example that works!
+   https://stackoverflow.com/questions/54598718/how-can-i-get-my-content-to-be-scroll-able-while-maintaining-my-header-and-foote
+   ----------------------------------------------------------------- */
+html { height: 100%; }
+body {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+main {
+    flex: auto;
+    flex-grow: 1;
+    overflow-y: auto;
+    /* ------------------------------------------------------------- 
+       This section is to push the scrollbar from the middle (right)
+       of the window to the side where scrollbars normally live.
+       Should use sass and variables for all the margin/padding numbers
+       ------------------------------------------------------------- */
+    box-sizing: border-box;
+    margin-left: -11em;		
+    padding-left: 11em;
+    width: 100vw;
+    padding-right: calc(100vw - 62rem); 
+/*    padding-right: -moz-calc(100% - 62rem);
+    padding-right: -webkit-calc(100% - 62rem);    */
+}
+/* -----------------------------------------------------------------
+   The tabindex/javascript trick used to allow spacebar scrolling of 
+   content parceled in the <main> also outlines the element in blue,
+   but since we didn't tabindex it for accessibility reasons, the 
+   blue is just confusing.
+   ----------------------------------------------------------------- */
+main:focus { outline: none; }
+
+/* -----------------------------------------------------------------
+   positioning navigation elements
+   ----------------------------------------------------------------- */
+#top-corner-logo {
+    position: fixed;
+    margin-left: -10.5rem;
+    width: 9.5rem;
+    top: 0.5rem;
+}
+
+#site-nav {    /* bottom left corner */
+    width: 9.5rem;
+    position: fixed;
+    margin-left: -10.5rem;
+    border-top: none;
+    bottom: 0.5rem;
+}
+#page-nav {   /* top left corner */
+    width: 6.5rem;
+    position: fixed;
+    margin-left: -10.5rem;
+    border-top: none;
+    top: 4rem;
+}
+nav#site-nav a, nav#page-nav a {
+    display: block;
+    text-align: right;
+    text-decoration: none;
+    font: Optima, Gill Sans, Arial, sans-serif;
+    font-weight: bold;
+    padding: 2px 4px 2px 0;
+    margin-top: 2px;
+    background: #ddd;
+    color: #000;
+}
+nav#site-nav a:hover, nav#page-nav a:hover { background: #bbf; }
+nav#site-nav a:active, nav#page-nav a:active { background: #fbb; }
+/* -----------------------------------------------------------------
+   If the current page is in the menu, it should not be a link so
+   it is not an href and we differentiate it visually as well.  
+   ----------------------------------------------------------------- */
+nav#site-nav a.nav-self, nav#page-nav a.nav-self {
+    background: linear-gradient(to right, #ddd, #ddd, white, white);
+}
+/* -----------------------------------------------------------------
+   If the current page is in the directory of a menu item, it should
+   still highlight as a link.
+   ----------------------------------------------------------------- */
+nav#site-nav a.nav-sub,
+nav#page-nav a.nav-sub {
+    background: linear-gradient(to right, #ddd, white);
+}
+nav#site-nav a.nav-sub:hover,
+nav#page-nav a.nav-sub:hover {
+    background: linear-gradient(to right, #bbf, white);
+}
+nav#site-nav a.nav-sub:active,
+nav#page-nav a.nav-sub:active {
+    background: linear-gradient(to right, #fbb, white);
+}
+
+/* -----------------------------------------------------------------
+   Styles for the pager buttons recommended by the 
+   jekyll-paginate-v2 author, modified to make the whole boxed 
+   area clickable and more clickability feedback.
+   ----------------------------------------------------------------- */
+nav.blog-pager ul {
+    text-align: center;
+    list-style: none;
+    padding-left: 0;
+}
+nav.blog-pager ul li {
+    display: inline;
+}
+nav.blog-pager ul li a {
+    display: inline-block;
+    border: 1px solid black;
+    padding: 10px 15px;
+    margin: 0 1px;
+}
+nav.blog-pager ul li a:hover:not([rel="self"]),
+nav.blog-pager ul li a:focus:not([rel="self"]) {
+    border-color:blue;
+    color: blue;
+}
+nav.blog-pager ul li a:active:not([rel="self"]) {
+    border-color: red;
+    color: red;
+}
+
+/* -----------------------------------------------------------------
+   styling the list of categories and tags 
+   ----------------------------------------------------------------- */
+.categories, .tags {
+    display: inline-block;
+    color: black;
+    padding: 0.5px 6px;
+    border-radius: 3px;
+}
+.categories { box-shadow: inset 0 0 6px #000; }
+.tags { box-shadow: inset 0 0 6px #666; }
+a.categories, a.tags,  
+.categories:hover, .tags:hover,
+.categories:active, .tags:active { text-decoration: none; }
+.categories:hover { box-shadow: inset 0 0 7.5px #009; }
+.tags:hover { box-shadow: inset 0 0 7.5px #55f; }
+.categories:active { box-shadow: inset 0 0 15px #f00; }
+.tags:active { box-shadow: inset 0 0 15px #f55; }
+.catag:last-child:after { 	/* line break after tags and categories*/
+    content: ' ';
+    display: block;
+}
+
+/* -----------------------------------------------------------------
+   Styles for the blog lists
+   ----------------------------------------------------------------- */
+article > header > h3,
+article > header > h1
+{ margin-bottom: 0; }
+
+.related h2 { margin-bottom: 0; }
+.related ul { margin-top: 0; }

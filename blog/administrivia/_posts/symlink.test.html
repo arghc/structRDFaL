@@ -1,0 +1,24 @@
+---
+layout: post
+categories: [administrivia]
+tags: [testing]
+Time-stamp: "Fri Mar  8 12:35:26 PST 2019"
+creation-date: "Fri Mar  8 12:12:38 PST 2019"
+title: Symlink instead of moving files
+---
+<p>I don't know how all these Jekyllites can be obsessed with "pretty
+  links" (ugh!) and don't care about these curs'd date-prefixed
+  files.... 
+
+  So much extra typing when linking or editing them.  I've fixed the
+  linking part with the permalink incantation in
+  the <code>_config.yml</code> with
+  <code>permalink: "/:categories/:title:output_ext"</code>.  But
+  there's still the extra typing part when you need to go in and
+  fiddle after publishing.</p>
+<p>This is a test to see if I can just symbolically link the file to a
+  published filename without bolloxing up the works on the generated
+  side</p>
+<p><strong>Note:</strong> Success!!  *Happy Dance!!*  Now, one only
+  need deal with the date stuff in the file names at the moment of
+  publication.</p>

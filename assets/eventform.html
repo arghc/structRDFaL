@@ -1,0 +1,110 @@
+---
+layout: page
+title: Submit an Event
+menu-me: true
+isform: yes
+---
+<p><strong>Note:</strong> for security reasons, a <strong><tt>mailto</tt></strong> link is being used.  If configured on your end, this is the safest way for both parties.  This activates <em>your</em> mailer to send the data entered.  <a href="https://www.chainsawonatireswing.com/2015/05/03/a-guide-to-getting-webmail-services-to-work-with-mailto-links/">See here</a> or <a href="https://www.chainsawonatireswing.com/2015/05/03/a-guide-to-getting-webmail-services-to-work-with-mailto-links/">here</a> for why that might not work and what to do about it.</p>
+<noscript><p><strong>You don't appear to have Javascript enabled</strong>.  On this page, the only Javascript used is to indicate when the form has been submitted.  If your browser and mail are configured to allow <tt>mailto</tt> links to work, then a mail composition window popping up will be your indication that everything is working.  If you are <strong>not</strong> configured for <tt>mailto</tt> <strong>and</strong> your Javascript is disabled, you will see... nothing.  There will be no way to tell if something else is wrong or if you just missed actually clicking on the <tt>Submit</tt> button.  Sorry.</p></noscript>
+
+<form action="mailto:{{ site.email }}?subject=New Event Submission from {{ site.title | escape }}" method="post"
+      enctype="text/plain" onSubmit="alert('Thanks for your submission.  Your mailer will now activate and the message will be manually processed.');">
+  <input type="hidden" name="Each submission is processed by hand " value=" so please be patient.&#10;If you read the below and are confused, there are a few note fields here and there to remind me about some things I need to do when converting from email to web page.  While it will be human-edited, it is not really meant to be human-readable.  Don't worry about it!&#10;&#10;">
+  <span style="display:none !important">
+    <label for="contact_me_by_fax_only">Contact me by fax only:</label>
+    <input type="checkbox" name="contact_me_by_fax_only" value="1" tabindex="-1" autocomplete="off">
+  </span>
+
+  <label for="ev-type">Event Type</label>
+  <select id="ev-type" name="type" required>
+    <option value="">Please chose an event type</option>
+    <option value="ExhibitionEvent">Exhibition (at a museum, gallery, or the like)</option>
+    <option value="EducationEvent">Academic Conference (let's include guild AGMs here, too)</option>
+    <option value="Festival">Festival (jamboree, SCA, tall ships, new year celebrations, etc</option>
+    <option value="BusinessEvent">Commercial Conference or craft show
+ <!--     <option value="SocialEvent">Meetings (to which the public is invited or why bother mentioning it here, right?)</option> -->
+  </select><br />
+  
+  <label for="ev-name">Name:</label>
+  <input type="text" id="ev-name" autofocus required
+	 placeholder="Name of your Event" name="title" /><br />
+
+  <input type="hidden" name="descNote" value="|- use for multi-line descriptions, don't forget to indent">
+  <label for="ev-desc">Description:</label>
+  <textarea id="ev-desc" name="description"
+	    placeholder="Description of your Event"></textarea><br />
+  
+  <label for="ev-age">Intended Audience:</label>
+  <input type="text" id="ev-age" name="age"
+	 placeholder="Recommended Age Range" list="ages"/>
+  <datalist id="ages">
+    <option>Type what you like, these are just suggestions</option>
+    <option>All Ages</option>
+    <option>Adults Only</option>
+    <option>Youth</option>
+    <option>8-12</option>
+  </datalist>
+  <br />
+
+  <label for="ev-url">Website:</label>
+  <input type="url" id="ev-url" name="website"
+	 placeholder="https://my.event.website.org/"/><br />
+
+  <label for="ev-host">Host:</label>
+  <input type="text" id="ev-host" name="organizer" required
+	 placeholder="Organization or person organizing the event" /><br />
+
+  <label for="ev-host-url">Host Website:</label>
+  <input type="url" id="ev-host-url" name="orgURL"
+	 placeholder="https://my.host.website.net/"/><br />
+
+  <label for="ev-startdate">Date:</label>
+  <input type="date" id="ev-startdate" name="startDate" required />
+  - 
+  <input type="date" id="ev-enddate" name="endDate" />
+  <small>(optional end date)</small><br />
+
+  <fieldset>
+    <legend>Location</legend>
+    <input type="hidden" name="venue" value="if they've included a venue name in the address">
+    <input type="hidden" name="addrNote" value="|- use for multi-line addresses, don't forget to indent">
+    <label for="ev-addr">Address:</label>
+    <textarea id="ev-addr" name="stAddress" required
+	      placeholder="Venue&#10;123 Address Street"></textarea><br />
+    <label for="ev-city">City:</label>
+    <input type="text" id="ev-city" name="locality" required /><br />
+
+    <label for="ev-prov">Province/State:</label>
+    <input type="text" id="ev-prov" name="region" required /><br />
+
+    <label for="ev-postal">Postal/Zip Code:</label>
+    <input type="text" id="ev-postal" name="postal" /><br />
+
+    <label for="ev-country">Country:</label>
+    <input type="text" id="ev-country" name="country" required /><br />
+
+    <label for="ev-venue-url">Website:</label>
+    <input type="url" id="ev-venue-url" name="venueURL"
+	 placeholder="https://my.venue.website.com/"/><br />
+
+    <label for="ev-mappic">Map Image:</label>
+    <input type="url" id="ev-mappic" name="mappic"
+	   placeholder="https://link.to/map-picture.jpg"/><br />
+    <label for="ev-maplink">Map link:</label>
+    <input type="url" id="ev-maplink" name="maplink"
+	   placeholder="https://link.to.map.com/"/><br />
+  </fieldset>
+
+  <label for="ev-lang">Languages:</label>
+  <input type="text" id="ev-lang" name="langs"
+	 placeholder="Presented in Japanese, Swahili, and Esperanto"/><br />
+
+  <label for="ev-price">Price/Fee:</label>
+  <textarea id="ev-price" name="offers"
+	    placeholder="Free&#10;Adult/Child prices&#10;Cost before/after particular dates&#10;etc."></textarea><br />
+  <input type="hidden" name="currencyCode" value="JPY or whatever">
+  <input type="hidden" name="currency" value="¥ or the like">
+  
+  <input type="reset" value="Reset" />
+  <input type="submit" value="Submit" />
+</form>

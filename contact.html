@@ -1,0 +1,23 @@
+---
+layout: contactPage
+title: Contact
+isform: yes
+---
+<p><strong>Note:</strong> for security reasons, a <strong><tt>mailto</tt></strong> link is being used.  If configured on your end, this is the safest way for both parties.  This activates <em>your</em> mailer to send the data entered.  <a href="https://www.chainsawonatireswing.com/2015/05/03/a-guide-to-getting-webmail-services-to-work-with-mailto-links/">See here</a> or <a href="https://www.chainsawonatireswing.com/2015/05/03/a-guide-to-getting-webmail-services-to-work-with-mailto-links/">here</a> for why that might not work and what to do about it.</p>
+<noscript><p><strong>You don't appear to have Javascript enabled</strong>.  On this page, the only Javascript used is to indicate when the form has been submitted.  If your browser and mail are configured to allow <tt>mailto</tt> links to work, then a mail composition window popping up will be your indication that everything is working.  If you are <strong>not</strong> configured for <tt>mailto</tt> <strong>and</strong> your Javascript is disabled, you will see... nothing.  There will be no way to tell if something else is wrong or if you just missed actually clicking on the <tt>Submit</tt> button.  Sorry.</p></noscript>
+
+<form action="mailto:{{ site.email }}?subject=Contact from {{ site.title | escape }}" method="post"
+      enctype="text/plain" onSubmit="alert('Thanks for your submission.  Your mailer will now activate and the message will be manually processed.');">
+  <span style="display:none !important">
+    <label for="contact_me_by_fax_only">Contact me by fax only:</label>
+    <input type="checkbox" name="contact_me_by_fax_only" value="1" tabindex="-1" autocomplete="off">
+  </span>
+
+  <label for="name">Name:</label>
+  <input type="text" id="name" autofocus required name="Name" /><br />
+  <label for="msg">Message:</label>
+  <textarea id="msg" name="Message" required rows="15"></textarea><br />
+    
+  <input type="reset" value="Reset" />
+  <input type="submit" value="Submit" />
+</form>

@@ -1,0 +1,15 @@
+    <div class="catag"> 
+      {% for category in page.categories -%}
+      {%- unless category=="blog" -%}
+      <a class="categories" href="{{ site.blogPath }}category.html#{{ category }}"
+	 title="List of posts in the '{{ category }}' category"
+	 property="articleSection" content="{{ category }}">{{ category }}</a>
+      {% endunless -%}
+      {% endfor -%}
+      {% for tag in page.tags -%}
+      <a class="tags" href="{{ site.blogPath }}tag.html#{{ tag }}"
+	 title="List of posts with the '{{ tag }}' tag"
+	 property="keywords" content="{{ tag }}">{{ tag }}</a>
+      {%- endcomment -%}
+      {% endfor -%}
+    </div>
