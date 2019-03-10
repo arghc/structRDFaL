@@ -74,26 +74,26 @@ Actually, `eventform.html` and `contactform.html` are forms that I use on my sit
 I'm just learning Sass, so the only thing in `_sass` directory is the pieces for `normalize-scss`, read about it in the `.colophon`
 
 ### `_config.yml`
-`title`/`sitemark`: Page titles will be created from either "sitemark - page.title" or "page.title - site.title", so config `sitemark` if so desired.
-`email`: is used in several places with nothing to prevent spammers from scraping it, you have been warned.
-`author`: is used in multiple places in the metadata.
-`scPath`: the path to your (java)scripts, I recommend `/scripts/`
-`stPath`: the path to your CSS, I recommend `/styles/`
+*`title`/`sitemark`: Page titles will be created from either "sitemark - page.title" or "page.title - site.title", so config `sitemark` if so desired.
+*`email`: is used in several places with nothing to prevent spammers from scraping it, you have been warned.
+*`author`: is used in multiple places in the metadata.
+*`scPath`: the path to your (java)scripts, I recommend `/scripts/`
+*`stPath`: the path to your CSS, I recommend `/styles/`
 
 The `jekyll-paginate-v2` plugin is expected
 
 ### These are OPTIONAL
-`specialty`:        used in `WebPage` Schema: "One of the domain specialities to which this web page's content applies."
-`google_analytics`: your Google Analytics code
-`javascriptON`:     set if you want the HTML5 Boilerplate JS recommended libraries (`main.js`, `plugins.js`, `jquery-3.3.1.min.js`, `modernizr-3.6.0.min.js`) included at the bottom of *each* page
-`copynotice`:       something like "Copyright Acme 1999 - All rights reserved." or a link to creative commons pages is fine.  ([Dublin Core usage guide](http://www.dublincore.org/documents/2001/04/12/usageguide/sectc/#rights), [Dublin Core example code](http://www.dublincore.org/documents/2001/04/12/usageguide/simple-html/#rights)).   Currently only used in metadata, I'll get around to putting it in the footer at some point.
+*`specialty`:        used in `WebPage` Schema: "One of the domain specialities to which this web page's content applies."
+*`google_analytics`: your Google Analytics code
+*`javascriptON`:     set if you want the HTML5 Boilerplate JS recommended libraries (`main.js`, `plugins.js`, `jquery-3.3.1.min.js`, `modernizr-3.6.0.min.js`) included at the bottom of *each* page
+*`copynotice`:       something like "Copyright Acme 1999 - All rights reserved." or a link to creative commons pages is fine.  ([Dublin Core usage guide](http://www.dublincore.org/documents/2001/04/12/usageguide/sectc/#rights), [Dublin Core example code](http://www.dublincore.org/documents/2001/04/12/usageguide/simple-html/#rights)).   Currently only used in metadata, I'll get around to putting it in the footer at some point.
 
 ### Per Page Frontmatter Options
-`description`:    if a `page.description` does not exist, the `site.description` is used in the metadata
-`meta-creator`:   if a page is authored by someone not the site `author`, a `page.meta-creator` can be set
-`keywords`:	  `keywords` for HTML metadata and Dublin Core, maybe later for one or another Schema (note that blogpost `tags` and `categories` are added to `keywords` for metadata purposes).
-`subject`:        similar but different from `keywords`.  ([Dublin Core usage guide](http://www.dublincore.org/documents/2001/04/12/usageguide/sectb/#subject), [Dublin Core qualifer options](http://www.dublincore.org/documents/dcmes-qualifiers/#subject))
-`creation-date`:  [Dublin Core date qualifier options](http://www.dublincore.org/documents/dcmes-qualifiers/#date) (will be integrated into the schema metadata at some point.)
+*`description`:    if a `page.description` does not exist, the `site.description` is used in the metadata
+*`meta-creator`:   if a page is authored by someone not the site `author`, a `page.meta-creator` can be set
+*`keywords`:	  `keywords` for HTML metadata and Dublin Core, maybe later for one or another Schema (note that blogpost `tags` and `categories` are added to `keywords` for metadata purposes).
+*`subject`:        similar but different from `keywords`.  ([Dublin Core usage guide](http://www.dublincore.org/documents/2001/04/12/usageguide/sectb/#subject), [Dublin Core qualifer options](http://www.dublincore.org/documents/dcmes-qualifiers/#subject))
+*`creation-date`:  [Dublin Core date qualifier options](http://www.dublincore.org/documents/dcmes-qualifiers/#date) (will be integrated into the schema metadata at some point.)
 
 Read the comments in the `default.html` layout for more options.
 
