@@ -1,7 +1,7 @@
 # [Structured Data RDFa Lite Jekyll theme](https://github.com/arghc/testing-repo)
 
 [![Jekyll](https://img.shields.io/badge/jekyll-%3E%3D%203.7-blue.svg)](https://jekyllrb.com/)
-[![Ruby gem](https://img.shields.io/gem/v/minimal-mistakes-jekyll.svg)](https://rubygems.org/gems/structrdfal)
+[![Ruby Gem](https://badge.fury.io/rb/structrdfal.svg)](https://badge.fury.io/rb/structrdfal)
 
 This Jekyll theme ([live demo](http://struct.arghc.ca/)) provides structured data markup in the form of [RDFa Lite](https://www.w3.org/TR/rdfa-lite/) for maximum human readability and smaller files (less repetition than [JSON-LD](https://json-ld.org/), [microdata](https://www.w3.org/TR/microdata/), or full [RDFa](https://rdfa.info/).  Additionally, for best practices purposes it is based on [HTML5 Boilerplate](https://html5boilerplate.com/) (v7.0.1), hence some additional directories (styles, scripts, html5-boilerplate-docs, .colophon) and files (.editorconfig, .htaccess, 404.html, site.webmanifest, robots.txt, humans.txt, browserconfig.xml).
 
